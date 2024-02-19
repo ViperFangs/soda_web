@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.discord',
 ]
 
+SITE_ID = 1
+
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -63,6 +65,11 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     'allauth.account.middleware.AccountMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Django's default authentication backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauth's authentication backend
 ]
 
 ROOT_URLCONF = "soda_web.urls"
@@ -171,3 +178,15 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+LOGIN_REDIRECT_URL = '/admin'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'discord': {
+        'APP': {
+            'client_id': '1209239772661284874',
+            'secret': 'NWD9PE7J_1arCCPSAvjKxm3fy2UECgy_',
+            'key': ''
+        }
+    }
+}
